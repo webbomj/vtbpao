@@ -1,0 +1,8 @@
+.sidebar-list {
+  &__static {
+    padding-left: 40px;
+    @media (max-width: 1440px) {
+      padding-left: 24px;
+    }
+  }
+}

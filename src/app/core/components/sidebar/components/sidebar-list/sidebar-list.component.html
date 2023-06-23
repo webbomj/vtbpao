@@ -1,0 +1,11 @@
+<div class="sidebar-list">
+  <div class="sidebar-list__item" *ngFor="let item of sidebarData">
+    <app-sidebar-expanded-item
+      [data]="item"
+      *ngIf="itemIsExpansion(item)"
+    ></app-sidebar-expanded-item>
+    <div class="sidebar-list__static" *ngIf="!itemIsExpansion(item)">
+      <app-sidebar-item [data]="sidebarData[1]"></app-sidebar-item>
+    </div>
+  </div>
+</div>

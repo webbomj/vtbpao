@@ -1,0 +1,38 @@
+<div class="expansion-panel">
+  <mat-expansion-panel
+    (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false"
+    expanded="true"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title> {{ sidebarData?.name }} </mat-panel-title>
+      <mat-panel-description>
+        {{ sidebarData?.subname ?? "" }}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="expansion-panel__list">
+      <div
+        class="expansion-panel__item"
+        *ngFor="let item of sidebarData?.children"
+      >
+        <app-sidebar-item
+          [data]="item"
+          *ngIf="isItemHeader(item)"
+        ></app-sidebar-item>
+
+        <div
+          class="expansion-panel__static--current"
+          *ngIf="isItemChild(item) && item.current"
+        >
+          {{ item?.name }}
+        </div>
+        <div
+          class="expansion-panel__static--usually"
+          *ngIf="isItemChild(item) && !item.current"
+        >
+          {{ item?.name }}
+        </div>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</div>

@@ -1,0 +1,20 @@
+.expansion-panel {
+  padding: 0 0 0 0 !important;
+
+  &__item {
+    margin-bottom: 16px;
+  }
+  &__static {
+    &--current {
+      margin-left: 40px;
+      font-size: 14px;
+      color: #fff;
+      text-decoration: underline;
+    }
+    &--usually {
+      margin-left: 40px;
+      font-size: 14px;
+      color: #e8ebed;
+    }
+  }
+}
