@@ -7,6 +7,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { SidebarListComponent } from './components/sidebar/components/sidebar-list/sidebar-list.component';
 import { SidebarExpandedItemComponent } from './components/sidebar/components/sidebar-expanded-item/sidebar-expanded-item.component';
 import { SidebarItemComponent } from './components/sidebar/components/sidebar-item/sidebar-item.component';
+import { BaseComponent } from './components/base/base.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { SidebarItemComponent } from './components/sidebar/components/sidebar-it
     SidebarListComponent,
     SidebarExpandedItemComponent,
     SidebarItemComponent,
+    BaseComponent,
   ],
   imports: [CommonModule, SharedModule],
   exports: [HeaderComponent, SidebarComponent],
