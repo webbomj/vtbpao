@@ -11,6 +11,7 @@ export class ButtonComponent {
   @Input('color') color: IconColor = IconColor.primary;
   @Input('text') text: string = 'hello';
   @Input('height') height: string = '40px';
+  @Input('icon') icon: string = 'favorite';
 
   isRightIcon() {
     return this.iconPosition === IconPosition.right;

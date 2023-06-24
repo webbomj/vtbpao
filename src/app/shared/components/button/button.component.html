@@ -1,11 +1,11 @@
 <button class="button" [class]="setColor()" [style]="setHeight()">
   <div class="button__container">
-    <mat-icon *ngIf="isLeftIcon()" class="button__icon button__icon--left"
-      >favorite</mat-icon
-    >
+    <mat-icon *ngIf="isLeftIcon()" class="button__icon button__icon--left">{{
+      icon
+    }}</mat-icon>
     {{ text }}
-    <mat-icon *ngIf="isRightIcon()" class="button__icon button__icon--right"
-      >favorite</mat-icon
-    >
+    <mat-icon *ngIf="isRightIcon()" class="button__icon button__icon--right">{{
+      icon
+    }}</mat-icon>
   </div>
 </button>
