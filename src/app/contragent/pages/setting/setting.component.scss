@@ -10,4 +10,20 @@
     line-height: 36px;
     color: #282828;
   }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+
+    &--left {
+      display: flex;
+      align-items: center;
+    }
+
+    &--right {
+      display: flex;
+      align-items: center;
+    }
+  }
 }

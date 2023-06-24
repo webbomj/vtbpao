@@ -3,20 +3,33 @@
   <h1 class="setting__header">
     Настройка учетных записей сотрудников контрагента
   </h1>
+
+  <div class="setting__buttons">
+    <div class="setting__buttons--left">
+      <app-button
+        text="Добавить"
+        [iconPosition]="getEnum('IconPosition').right"
+      ></app-button>
+      <app-button
+        text="Разблокировать"
+        [iconPosition]="getEnum('IconPosition').right"
+      ></app-button>
+      <app-button
+        text="Заблокировать"
+        [iconPosition]="getEnum('IconPosition').right"
+      ></app-button>
+    </div>
+    <div class="setting__buttons--right">
+      <app-button
+        text="Фильтр"
+        [iconPosition]="getEnum('IconPosition').left"
+        [color]="getEnum('IconColor').secondary"
+      ></app-button>
+    </div>
+  </div>
+
   <!-- <div class="setting__da">
     <app-button text="Добавить"></app-button>
-    <app-button
-      text="Разблокировать"
-      [iconPosition]="getEnum('IconPosition').left"
-    ></app-button>
-    <app-button
-      text="Добавить"
-      [iconPosition]="getEnum('IconPosition').right"
-    ></app-button>
-    <app-button
-      text="Фильтр"
-      [iconPosition]="getEnum('IconPosition').left"
-      [color]="getEnum('IconColor').secondary"
-    ></app-button>
+    
   </div> -->
 </div>

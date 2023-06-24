@@ -1,3 +1,9 @@
+:host {
+  &:not(:last-child) {
+    margin-right: 24px;
+  }
+}
+
 .button {
   padding: 8px 16px;
   min-width: 113px;
@@ -6,6 +12,7 @@
   background-color: #da2032;
   border: none;
   color: #fff;
+  cursor: pointer;
 
   &__secondary {
     background-color: grey;
