@@ -46,7 +46,8 @@
   border-color: #ff001f !important;
 }
 
-.ng-invalid.ng-dirty.ng-untouched .mdc-text-field--focused {
+.mat-mdc-form-field-type-mat-input.ng-invalid.ng-dirty.ng-untouched
+  .mdc-text-field--focused {
   border-color: #ff001f !important;
 }
 

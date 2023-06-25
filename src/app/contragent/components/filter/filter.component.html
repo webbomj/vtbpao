@@ -7,10 +7,7 @@
         [class]="isValidControl('userName') ? 'input__label--invalid' : ''"
         >Логин</mat-label
       >
-      <mat-form-field
-        class="input__field"
-        [class]="isValidControl('userName') ? 'input__field--invalid' : ''"
-      >
+      <mat-form-field class="input__field">
         <input
           matInput
           type="text"
@@ -114,7 +111,14 @@
         >Дата создания</mat-label
       >
       <mat-form-field class="input__field datepicker">
-        <input matInput [matDatepicker]="picker" formControlName="dateCreate" />
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="dateCreate"
+          [class]="
+            isValidControl('dateCreate') ? 'input__field-input--invalid' : ''
+          "
+        />
         <mat-datepicker-toggle matIconSuffix [for]="picker">
           <mat-icon
             matDatepickerToggleIcon
@@ -148,8 +152,15 @@
         >Дата изменения</mat-label
       >
       <mat-form-field class="input__field datepicker">
-        <input matInput [matDatepicker]="picker" formControlName="dateUpdate" />
-        <mat-datepicker-toggle matIconSuffix [for]="picker">
+        <input
+          matInput
+          [matDatepicker]="picker2"
+          formControlName="dateUpdate"
+          [class]="
+            isValidControl('dateUpdate') ? 'input__field-input--invalid' : ''
+          "
+        />
+        <mat-datepicker-toggle matIconSuffix [for]="picker2">
           <mat-icon
             matDatepickerToggleIcon
             [class]="
@@ -161,7 +172,7 @@
             >calendar_month</mat-icon
           >
         </mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <mat-datepicker #picker2></mat-datepicker>
       </mat-form-field>
       <mat-error
         *ngIf="
@@ -170,6 +181,26 @@
       >
         Please enter a valid date
       </mat-error>
+    </div>
+    <div class="filter__input status">
+      <mat-label class="input__label">Дата изменения</mat-label>
+      <mat-form-field>
+        <select matNativeControl formControlName="status">
+          <option value="" selected></option>
+          <option value="active">Активный</option>
+          <option value="blocked">Заблокированный</option>
+        </select>
+      </mat-form-field>
+    </div>
+    <div class="filter__input role">
+      <mat-label class="input__label">Дата изменения</mat-label>
+      <mat-form-field>
+        <select matNativeControl formControlName="role">
+          <option value="" selected></option>
+          <option value="user">Пользователь</option>
+          <option value="admin">Администратор</option>
+        </select>
+      </mat-form-field>
     </div>
 
     <button (click)="sent()">Dadad</button>

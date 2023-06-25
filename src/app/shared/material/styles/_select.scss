@@ -1,0 +1,7 @@
+.mat-mdc-form-field-type-mat-native-select .mat-mdc-form-field-infix::after {
+  top: 23px !important;
+}
+
+.mat-mdc-form-field-type-mat-native-select.ng-dirty.ng-untouched {
+  border-color: rgba(130, 140, 150, 0.4) !important;
+}

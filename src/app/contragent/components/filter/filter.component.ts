@@ -22,6 +22,8 @@ export class FilterComponent {
     ]),
     dateCreate: new FormControl('', [Validators.required]),
     dateUpdate: new FormControl('', [Validators.required]),
+    status: new FormControl(''),
+    role: new FormControl(''),
   });
 
   isValidControl(value: string) {
