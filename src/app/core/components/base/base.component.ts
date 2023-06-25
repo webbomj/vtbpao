@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {
   IconColor,
   IconPosition,
-} from 'src/app/shared/components/button/custom-button.interface';
+} from 'src/app/contragent/components/button/custom-button.interface';
 
 @Component({
   selector: 'app-base',

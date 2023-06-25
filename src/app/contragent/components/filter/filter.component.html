@@ -1,0 +1,182 @@
+<div class="filter">
+  <span class="filter__header">Фильтр</span>
+  <form class="filter__form" [formGroup]="myForm">
+    <div class="filter__input userName">
+      <mat-label
+        class="input__label"
+        [class]="isValidControl('userName') ? 'input__label--invalid' : ''"
+        >Логин</mat-label
+      >
+      <mat-form-field
+        class="input__field"
+        [class]="isValidControl('userName') ? 'input__field--invalid' : ''"
+      >
+        <input
+          matInput
+          type="text"
+          formControlName="userName"
+          class="input__field-input"
+          [class]="
+            isValidControl('userName') ? 'input__field-input--invalid' : ''
+          "
+        />
+        <button
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="clear('userName')"
+          class="input__field-button"
+          [class]="
+            isValidControl('userName') ? 'input__field-button--invalid' : ''
+          "
+        >
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-error
+        *ngIf="isValidControl('userName') && myForm.controls['mail'].touched"
+      >
+        Please enter a valid login
+      </mat-error>
+    </div>
+    <div class="filter__input phone">
+      <mat-label
+        class="input__label"
+        [class]="isValidControl('phone') ? 'input__label--invalid' : ''"
+        >Телефон</mat-label
+      >
+      <mat-form-field class="input__field">
+        <input
+          matInput
+          type="text"
+          formControlName="phone"
+          class="input__field-input"
+          [class]="isValidControl('phone') ? 'input__field-input--invalid' : ''"
+        />
+        <button
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="clear('phone')"
+          class="input__field-button"
+          [class]="
+            isValidControl('phone') ? 'input__field-button--invalid' : ''
+          "
+        >
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-error
+        *ngIf="isValidControl('phone') && myForm.controls['phone'].touched"
+      >
+        Please enter a valid phone
+      </mat-error>
+    </div>
+    <div class="filter__input mail">
+      <mat-label
+        class="input__label"
+        [class]="isValidControl('mail') ? 'input__label--invalid' : ''"
+        >E-mail</mat-label
+      >
+      <mat-form-field class="input__field">
+        <input
+          matInput
+          type="text"
+          formControlName="mail"
+          class="input__field-input"
+          [class]="isValidControl('mail') ? 'input__field-input--invalid' : ''"
+        />
+        <button
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="clear('mail')"
+          class="input__field-button"
+          [class]="isValidControl('mail') ? 'input__field-button--invalid' : ''"
+        >
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-error
+        *ngIf="isValidControl('mail') && myForm.controls['mail'].touched"
+      >
+        Please enter a valid mail
+      </mat-error>
+    </div>
+    <div class="filter__input date-create">
+      <mat-label
+        class="input__label"
+        [class]="
+          isValidControl('dateCreate') && myForm.controls['dateCreate'].dirty
+            ? 'input__label--invalid'
+            : ''
+        "
+        >Дата создания</mat-label
+      >
+      <mat-form-field class="input__field datepicker">
+        <input matInput [matDatepicker]="picker" formControlName="dateCreate" />
+        <mat-datepicker-toggle matIconSuffix [for]="picker">
+          <mat-icon
+            matDatepickerToggleIcon
+            [class]="
+              isValidControl('dateCreate') &&
+              myForm.controls['dateCreate'].dirty
+                ? 'input__field-button--invalid'
+                : ''
+            "
+            >calendar_month</mat-icon
+          >
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-error
+        *ngIf="
+          isValidControl('dateCreate') && myForm.controls['dateCreate'].touched
+        "
+      >
+        Please enter a valid date
+      </mat-error>
+    </div>
+    <div class="filter__input date-update">
+      <mat-label
+        class="input__label"
+        [class]="
+          isValidControl('dateUpdate') && myForm.controls['dateUpdate'].dirty
+            ? 'input__label--invalid'
+            : ''
+        "
+        >Дата изменения</mat-label
+      >
+      <mat-form-field class="input__field datepicker">
+        <input matInput [matDatepicker]="picker" formControlName="dateUpdate" />
+        <mat-datepicker-toggle matIconSuffix [for]="picker">
+          <mat-icon
+            matDatepickerToggleIcon
+            [class]="
+              isValidControl('dateUpdate') &&
+              myForm.controls['dateUpdate'].dirty
+                ? 'input__field-button--invalid'
+                : ''
+            "
+            >calendar_month</mat-icon
+          >
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-error
+        *ngIf="
+          isValidControl('dateUpdate') && myForm.controls['dateUpdate'].touched
+        "
+      >
+        Please enter a valid date
+      </mat-error>
+    </div>
+
+    <button (click)="sent()">Dadad</button>
+  </form>
+  <div class="filter__buttons">
+    <app-button text="Применить" hight="48px"></app-button>
+    <app-button text="Отмена" hight="48px" disabled></app-button>
+    <app-button text="Сбросить" hight="48px" disabled></app-button>
+  </div>
+</div>

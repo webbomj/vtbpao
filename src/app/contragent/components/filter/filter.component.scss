@@ -1,0 +1,54 @@
+.filter {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 32px 64px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.05);
+
+  &__header {
+    color: #282828;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+  }
+
+  &__form {
+    margin-top: 32px;
+  }
+
+  &__input {
+  }
+}
+
+.input {
+  &__label {
+    color: #282828;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    &--invalid {
+      color: #ff001f;
+    }
+  }
+
+  &__field {
+    margin-top: 10px;
+    &--invalid {
+      border-color: #ff001f !important;
+    }
+  }
+
+  &__field-button {
+    color: #a2a9b1;
+    &--invalid {
+      color: #ff001f;
+    }
+  }
+  &__field-input {
+    color: #282828 !important;
+    &--invalid {
+      color: #ff001f !important;
+    }
+  }
+}

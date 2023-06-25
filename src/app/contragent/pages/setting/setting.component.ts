@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {
   IconColor,
   IconPosition,
-} from '../../../shared/components/button/custom-button.interface';
+} from '../../components/button/custom-button.interface';
 import { BaseComponent } from 'src/app/core/components/base/base.component';
 
 @Component({

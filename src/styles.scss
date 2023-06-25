@@ -37,6 +37,8 @@ $vtb-theme: mat.define-light-theme(
 /* You can add global styles to this file, and also import other style files */
 
 @import url("./app/shared/material/styles/_expansion-panel.scss");
+@import url("./app/shared/material/styles/_input.scss");
+@import url("./app/shared/material/styles/_datepicker.scss");
 
 html,
 body {
