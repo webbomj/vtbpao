@@ -36,4 +36,4 @@ export interface IFilteredUser {
   name: string | null;
 }
 
-export type ICompositionUser = IUsers | IData;
+export type ICompositionUser = IUsers & IData;

@@ -1,16 +1,52 @@
-import { Component, Input, ViewChildren, QueryList } from '@angular/core';
+import {
+  Component,
+  Input,
+  ViewChildren,
+  QueryList,
+  Output,
+  EventEmitter,
+  OnInit,
+  OnDestroy,
+} from '@angular/core';
 import { ICompositionUser } from '../../pages/setting/setting.interface';
-import { MatTableDataSource } from '@angular/material/table';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
-export class TableComponent {
+export class TableComponent implements OnInit {
   @Input() dataSource: ICompositionUser[] = [];
 
-  @ViewChildren('checkboxLogin') checkboxLogin!: QueryList<HTMLInputElement>;
+  @Input() events!: Observable<string>;
+
+  private eventsSubscription!: Subscription;
+
+  eventCmd = ['ban', 'unban'];
+
+  @ViewChildren('checkboxLogin') checkboxLogin!: QueryList<any>;
+
+  @Output() banUser = new EventEmitter<string[]>();
+  @Output() unbanUser = new EventEmitter<string[]>();
+
+  ngOnInit() {
+    this.eventsSubscription = this.events.subscribe((event) => {
+      if (event === this.eventCmd[0]) {
+        const logins = this.getLogins();
+        this.banUser.emit(logins);
+      }
+
+      if (event === this.eventCmd[1]) {
+        const logins = this.getLogins();
+        this.unbanUser.emit(logins);
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.eventsSubscription.unsubscribe();
+  }
 
   allCheckbox = false;
 
@@ -81,5 +117,17 @@ export class TableComponent {
       month: '2-digit',
       year: 'numeric',
     });
+  }
+
+  getLogins() {
+    const logins: string[] = [];
+    this.checkboxLogin.forEach((el) => {
+      if (el.checked) {
+        const login: string =
+          el._labelElement.nativeElement.firstChild.textContent;
+        logins.push(login);
+      }
+    });
+    return logins;
   }
 }

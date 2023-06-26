@@ -4,9 +4,12 @@ import { UsersService } from '../../services/users.service';
 import {
   ICompositionUser,
   IData,
+  IFilteredUser,
   IUsers,
   IUsersData,
 } from './setting.interface';
+import { Subject } from 'rxjs';
+import { LocalStorageService } from '../../services/localstorage.service';
 
 @Component({
   selector: 'app-setting',
@@ -22,7 +25,16 @@ export class SettingComponent extends BaseComponent implements OnInit {
 
   fetchData: IUsersData | null = null;
 
-  constructor(private userService: UsersService) {
+  eventsSubject: Subject<string> = new Subject<string>();
+
+  emitEventToChild(cmd: string) {
+    this.eventsSubject.next(cmd);
+  }
+
+  constructor(
+    private userService: UsersService,
+    private storage: LocalStorageService
+  ) {
     super();
   }
 
@@ -73,5 +85,35 @@ export class SettingComponent extends BaseComponent implements OnInit {
 
   setOldData(event: boolean) {
     this.dataTable = this.secondDataTable;
+  }
+
+  banUser(events: string[]) {
+    console.log(events, 'da');
+    events.forEach((event) => {
+      this.dataTable.forEach((el) => {
+        console.log(el, ' + ', event);
+        if (el.name === event) {
+          if (el.status !== 'BLOCK') {
+            this.storage.setData(events, 'ban');
+          }
+          el.status = 'BLOCK';
+        }
+      });
+    });
+  }
+
+  unbanUser(events: string[]) {
+    console.log(events, 'da');
+    events.forEach((event) => {
+      this.dataTable.forEach((el) => {
+        console.log(el, ' + ', event);
+        if (el.name === event) {
+          if (el.status !== 'ACTIVE') {
+            this.storage.setData(events, 'unban');
+          }
+          el.status = 'ACTIVE';
+        }
+      });
+    });
   }
 }

@@ -20,6 +20,7 @@
           text="Разблокировать"
           [iconPosition]="getEnum('IconPosition').right"
           icon="check_circle"
+          (click)="emitEventToChild('unban')"
         ></app-button>
       </div>
       <div class="setting__button">
@@ -27,6 +28,7 @@
           text="Заблокировать"
           [iconPosition]="getEnum('IconPosition').right"
           icon="cancel"
+          (click)="emitEventToChild('ban')"
         ></app-button>
       </div>
     </div>
@@ -52,7 +54,12 @@
 
   <div class="setting__tables">
     <div class="setting__table--first">
-      <app-table [dataSource]="dataTable"></app-table>
+      <app-table
+        [dataSource]="dataTable"
+        (banUser)="banUser($event)"
+        (unbanUser)="unbanUser($event)"
+        [events]="eventsSubject.asObservable()"
+      ></app-table>
     </div>
   </div>
 </div>

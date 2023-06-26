@@ -79,9 +79,7 @@ export class FilterComponent {
       if (!value) continue;
       if (key === 'create_at' || key === 'update_at') {
         data = data.filter(
-          (user) =>
-            this.filterDate(user[key as keyof ICompositionUser]) ===
-            this.filterDate(value)
+          (user) => this.filterDate(user[key]) === this.filterDate(value)
         );
       } else if (key === 'phone') {
         data = data.filter(
@@ -114,7 +112,7 @@ export class FilterComponent {
     return role === 'admin' ? true : false;
   }
 
-  filterDate(date: string) {
+  filterDate(date: string | number) {
     const timeToStamp = new Date(date).toLocaleDateString('ru-RU', {
       day: '2-digit',
       month: '2-digit',
