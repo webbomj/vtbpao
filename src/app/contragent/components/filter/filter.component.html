@@ -73,7 +73,7 @@
       <mat-label
         class="input__label"
         [class]="
-          isValidControl('dateCreate') && myForm.controls['dateCreate'].dirty
+        myForm.controls['dateCreate'].errors?.['date'] && myForm.controls['dateCreate'].dirty
             ? 'input__label--invalid'
             : ''
         "
@@ -85,14 +85,14 @@
           [matDatepicker]="picker"
           formControlName="dateCreate"
           [class]="
-            isValidControl('dateCreate') ? 'input__field-input--invalid' : ''
+          myForm.controls['dateCreate'].errors?.['date'] ? 'input__field-input--invalid' : ''
           "
         />
         <mat-datepicker-toggle matIconSuffix [for]="picker">
           <mat-icon
             matDatepickerToggleIcon
             [class]="
-              isValidControl('dateCreate') &&
+            myForm.controls['dateCreate'].errors?.['date'] &&
               myForm.controls['dateCreate'].dirty
                 ? 'input__field-button--invalid'
                 : ''
@@ -104,7 +104,7 @@
       </mat-form-field>
       <mat-error
         *ngIf="
-          isValidControl('dateCreate') && myForm.controls['dateCreate'].touched
+        myForm.controls['dateCreate'].errors?.['date'] && myForm.controls['dateCreate'].touched
         "
       >
         Please enter a valid date
@@ -194,13 +194,6 @@
         </mat-datepicker-toggle>
         <mat-datepicker #picker2></mat-datepicker>
       </mat-form-field>
-      <!-- <mat-error
-        *ngIf="
-          isValidControl('dateUpdate') && myForm.controls['dateUpdate'].touched
-        "
-      >
-        Please enter a valid date
-      </mat-error> -->
       <mat-error
         *ngIf="
           myForm.controls['dateUpdate'].errors?.['date'] && myForm.controls['dateUpdate'].touched
