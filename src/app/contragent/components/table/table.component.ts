@@ -75,11 +75,9 @@ export class TableComponent implements OnInit {
 
   checkLogin(event: boolean) {
     if (event) {
-      console.log(
-        this.checkboxLogin.forEach((el) => {
-          el.checked = true;
-        })
-      );
+      this.checkboxLogin.forEach((el) => {
+        el.checked = true;
+      });
     } else {
       this.checkboxLogin.forEach((el) => {
         el.checked = false;

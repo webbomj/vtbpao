@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ISidebarData, SidebarDataType } from '../../data/data.interface';
 
 @Component({
@@ -6,12 +6,8 @@ import { ISidebarData, SidebarDataType } from '../../data/data.interface';
   templateUrl: './sidebar-list.component.html',
   styleUrls: ['./sidebar-list.component.scss'],
 })
-export class SidebarListComponent implements OnInit {
+export class SidebarListComponent {
   @Input('data') sidebarData!: ISidebarData[];
-
-  ngOnInit(): void {
-    console.log(this.sidebarData);
-  }
 
   itemIsExpansion(item: ISidebarData) {
     return item.type === SidebarDataType.expansion;

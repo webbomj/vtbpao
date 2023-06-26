@@ -12,12 +12,9 @@ export function createDateValidator(): ValidatorFn {
       month: 'numeric',
       year: 'numeric',
     });
-    console.log(valueToDate, ' da');
 
     const regexDate = /^\d{1,2}\.\d{1,2}\.\d{4}$/;
     const dateRegex = regexDate.test(valueToDate);
-
-    console.log(dateRegex);
 
     return !dateRegex ? { date: true } : null;
   };
