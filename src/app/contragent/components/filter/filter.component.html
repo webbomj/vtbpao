@@ -1,4 +1,4 @@
-<div class="filter">
+<div class="filter" [class]="isOpen ? '' : 'filter__close'">
   <span class="filter__header">Фильтр</span>
   <form class="filter__form" [formGroup]="myForm">
     <div class="filter__input userName">
@@ -69,37 +69,6 @@
         Please enter a valid phone
       </mat-error>
     </div>
-    <div class="filter__input mail">
-      <mat-label
-        class="input__label"
-        [class]="isValidControl('mail') ? 'input__label--invalid' : ''"
-        >E-mail</mat-label
-      >
-      <mat-form-field class="input__field">
-        <input
-          matInput
-          type="text"
-          formControlName="mail"
-          class="input__field-input"
-          [class]="isValidControl('mail') ? 'input__field-input--invalid' : ''"
-        />
-        <button
-          matSuffix
-          mat-icon-button
-          aria-label="Clear"
-          (click)="clear('mail')"
-          class="input__field-button"
-          [class]="isValidControl('mail') ? 'input__field-button--invalid' : ''"
-        >
-          <mat-icon>cancel</mat-icon>
-        </button>
-      </mat-form-field>
-      <mat-error
-        *ngIf="isValidControl('mail') && myForm.controls['mail'].touched"
-      >
-        Please enter a valid mail
-      </mat-error>
-    </div>
     <div class="filter__input date-create">
       <mat-label
         class="input__label"
@@ -141,11 +110,62 @@
         Please enter a valid date
       </mat-error>
     </div>
+    <div class="filter__input status">
+      <mat-label class="input__label">Статус</mat-label>
+      <mat-form-field class="input__field select">
+        <select matNativeControl formControlName="status">
+          <option value="" selected></option>
+          <option value="active">Активный</option>
+          <option value="blocked">Заблокированный</option>
+        </select>
+      </mat-form-field>
+    </div>
+    <div class="filter__input mail">
+      <mat-label
+        class="input__label"
+        [class]="isValidControl('mail') ? 'input__label--invalid' : ''"
+        >E-mail</mat-label
+      >
+      <mat-form-field class="input__field">
+        <input
+          matInput
+          type="text"
+          formControlName="mail"
+          class="input__field-input"
+          [class]="isValidControl('mail') ? 'input__field-input--invalid' : ''"
+        />
+        <button
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="clear('mail')"
+          class="input__field-button"
+          [class]="isValidControl('mail') ? 'input__field-button--invalid' : ''"
+        >
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-error
+        *ngIf="isValidControl('mail') && myForm.controls['mail'].touched"
+      >
+        Please enter a valid mail
+      </mat-error>
+    </div>
+    <div class="filter__input role">
+      <mat-label class="input__label">Роль</mat-label>
+      <mat-form-field class="input__field datepicker">
+        <select matNativeControl formControlName="role">
+          <option value="" selected></option>
+          <option value="user">Пользователь</option>
+          <option value="admin">Администратор</option>
+        </select>
+      </mat-form-field>
+    </div>
     <div class="filter__input date-update">
       <mat-label
         class="input__label"
         [class]="
-          isValidControl('dateUpdate') && myForm.controls['dateUpdate'].dirty
+        myForm.controls['dateUpdate'].errors?.['date'] && myForm.controls['dateUpdate'].dirty
             ? 'input__label--invalid'
             : ''
         "
@@ -157,14 +177,14 @@
           [matDatepicker]="picker2"
           formControlName="dateUpdate"
           [class]="
-            isValidControl('dateUpdate') ? 'input__field-input--invalid' : ''
+          myForm.controls['dateUpdate'].errors?.['date'] ? 'input__field-input--invalid' : ''
           "
         />
         <mat-datepicker-toggle matIconSuffix [for]="picker2">
           <mat-icon
             matDatepickerToggleIcon
             [class]="
-              isValidControl('dateUpdate') &&
+            myForm.controls['dateUpdate'].errors?.['date'] &&
               myForm.controls['dateUpdate'].dirty
                 ? 'input__field-button--invalid'
                 : ''
@@ -174,40 +194,43 @@
         </mat-datepicker-toggle>
         <mat-datepicker #picker2></mat-datepicker>
       </mat-form-field>
-      <mat-error
+      <!-- <mat-error
         *ngIf="
           isValidControl('dateUpdate') && myForm.controls['dateUpdate'].touched
         "
       >
         Please enter a valid date
+      </mat-error> -->
+      <mat-error
+        *ngIf="
+          myForm.controls['dateUpdate'].errors?.['date'] && myForm.controls['dateUpdate'].touched
+        "
+      >
+        Please enter a valid date
       </mat-error>
     </div>
-    <div class="filter__input status">
-      <mat-label class="input__label">Дата изменения</mat-label>
-      <mat-form-field>
-        <select matNativeControl formControlName="status">
-          <option value="" selected></option>
-          <option value="active">Активный</option>
-          <option value="blocked">Заблокированный</option>
-        </select>
-      </mat-form-field>
-    </div>
-    <div class="filter__input role">
-      <mat-label class="input__label">Дата изменения</mat-label>
-      <mat-form-field>
-        <select matNativeControl formControlName="role">
-          <option value="" selected></option>
-          <option value="user">Пользователь</option>
-          <option value="admin">Администратор</option>
-        </select>
-      </mat-form-field>
-    </div>
-
-    <button (click)="sent()">Dadad</button>
   </form>
   <div class="filter__buttons">
-    <app-button text="Применить" hight="48px"></app-button>
-    <app-button text="Отмена" hight="48px" disabled></app-button>
-    <app-button text="Сбросить" hight="48px" disabled></app-button>
+    <app-button
+      text="Применить"
+      hight="48px"
+      class="filter__button"
+      (click)="applyFilter()"
+    ></app-button>
+    <app-button
+      text="Отмена"
+      hight="48px"
+      [disabled]="true"
+      class="filter__button"
+      [disabled]="!sendFilter"
+      (click)="cancelFilter()"
+    ></app-button>
+    <app-button
+      text="Сбросить"
+      hight="48px"
+      [disabled]="myForm.pristine"
+      class="filter__button"
+      (click)="clearAll()"
+    ></app-button>
   </div>
 </div>

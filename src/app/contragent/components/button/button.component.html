@@ -1,4 +1,9 @@
-<button class="button" [class]="setColor()" [style]="setHeight()">
+<button
+  class="button"
+  [class]="setColor()"
+  [style]="setHeight()"
+  [disabled]="disabled"
+>
   <div class="button__container">
     <mat-icon *ngIf="isLeftIcon()" class="button__icon button__icon--left">{{
       icon

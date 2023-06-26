@@ -12,6 +12,7 @@ export class ButtonComponent {
   @Input('text') text: string = 'hello';
   @Input('height') height: string = '40px';
   @Input('icon') icon: string = 'favorite';
+  @Input('disabled') disabled: boolean = false;
 
   isRightIcon() {
     return this.iconPosition === IconPosition.right;

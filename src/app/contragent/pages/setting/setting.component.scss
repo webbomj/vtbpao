@@ -17,7 +17,7 @@
   }
 
   @media (max-width: 600px) {
-    padding: 40px 16px 50px 16px;
+    padding: 40px 0 50px 0;
   }
 
   &__header {
@@ -29,6 +29,9 @@
     @media (max-width: 1024px) {
       font-size: 22px;
     }
+    @media (max-width: 600px) {
+      margin-left: 14px;
+    }
   }
 
   &__buttons {
@@ -38,6 +41,9 @@
 
     @media (max-width: 768px) {
       flex-direction: column;
+    }
+    @media (max-width: 600px) {
+      margin-left: 14px;
     }
 
     &--left {
@@ -77,6 +83,12 @@
       @media (max-width: 600px) {
         margin-top: 8px;
       }
+    }
+  }
+
+  &__next-button {
+    @media (max-width: 600px) {
+      margin-left: 14px;
     }
   }
 

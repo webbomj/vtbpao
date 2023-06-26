@@ -8,6 +8,11 @@
   color: #fff;
   cursor: pointer;
 
+  &:disabled {
+    background-color: rgba(102, 111, 120, 0.1);
+    color: rgba(102, 111, 120, 1);
+  }
+
   &__secondary {
     background-color: #bbc4cc;
     color: #666f78;

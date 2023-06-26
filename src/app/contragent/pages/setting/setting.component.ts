@@ -10,4 +10,10 @@ import { BaseComponent } from 'src/app/core/components/base/base.component';
   templateUrl: './setting.component.html',
   styleUrls: ['./setting.component.scss'],
 })
-export class SettingComponent extends BaseComponent {}
+export class SettingComponent extends BaseComponent {
+  filter = true;
+
+  toggleFilter() {
+    this.filter = !this.filter;
+  }
+}

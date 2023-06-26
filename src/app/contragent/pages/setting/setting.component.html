@@ -1,5 +1,7 @@
 <div class="setting">
-  <app-back-button text="Назад"></app-back-button>
+  <div class="setting__next-button">
+    <app-back-button text="Назад"></app-back-button>
+  </div>
   <h1 class="setting__header">
     Настройка учетных записей сотрудников контрагента
   </h1>
@@ -34,11 +36,12 @@
         [iconPosition]="getEnum('IconPosition').left"
         [color]="getEnum('IconColor').secondary"
         icon="filter_list"
+        (click)="toggleFilter()"
       ></app-button>
     </div>
   </div>
 
   <div class="setting__filter">
-    <app-filter></app-filter>
+    <app-filter [isOpen]="filter"></app-filter>
   </div>
 </div>
