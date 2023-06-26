@@ -49,6 +49,7 @@
     &--left {
       display: flex;
       align-items: center;
+
       @media (max-width: 600px) {
         max-width: 400px;
         flex-wrap: wrap;
