@@ -1,0 +1,67 @@
+.table {
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.05);
+  padding: 16px 0;
+
+  &__header {
+    background-color: #ff001f;
+
+    &-row {
+      color: #fff;
+      font-size: 14px;
+      &--checkbox {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        top: 8px;
+      }
+    }
+  }
+
+  &__status {
+    &--active {
+      color: #25b553;
+    }
+    &--block {
+      color: #ff001f;
+    }
+  }
+
+  &__ecp {
+    text-align: center;
+    vertical-align: middle;
+    &--check {
+      color: #25b553;
+    }
+
+    &--cancel {
+      color: #ff001f;
+    }
+  }
+
+  &__actions {
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  &__checkbox {
+    color: #fff;
+  }
+
+  &__column {
+    text-align: left !important;
+  }
+
+  &__checkedQty {
+    color: #666f78;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-left: 16px;
+  }
+}

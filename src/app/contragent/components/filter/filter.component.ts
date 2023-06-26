@@ -1,6 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { createDateValidator } from '../../validator/date.validator';
+import {
+  ICompositionUser,
+  IFilteredUser,
+} from '../../pages/setting/setting.interface';
 
 @Component({
   selector: 'app-filter',
@@ -9,26 +13,32 @@ import { createDateValidator } from '../../validator/date.validator';
 })
 export class FilterComponent {
   @Input() isOpen = false;
+  @Input() data!: ICompositionUser[];
 
   sendFilter = false;
 
+  filteredData!: IFilteredUser;
+
+  @Output() onChanged = new EventEmitter<ICompositionUser[]>();
+  @Output() onCancel = new EventEmitter<true>();
+
   myForm: FormGroup = new FormGroup({
-    userName: new FormControl('', [Validators.pattern('[a-zA-z0-9]*')]),
+    name: new FormControl('', [Validators.pattern('[a-zA-z0-9]*')]),
     phone: new FormControl('', [
       Validators.pattern(
         /^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/
       ),
     ]),
-    mail: new FormControl('', [
+    email: new FormControl('', [
       Validators.email,
       Validators.pattern(
         /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
       ),
     ]),
-    dateCreate: new FormControl('', [createDateValidator()]),
-    dateUpdate: new FormControl('', [createDateValidator()]),
+    create_at: new FormControl('', [createDateValidator()]),
+    update_at: new FormControl('', [createDateValidator()]),
     status: new FormControl(''),
-    role: new FormControl(''),
+    is_admin: new FormControl(''),
   });
 
   isValidControl(value: string) {
@@ -43,35 +53,74 @@ export class FilterComponent {
     this.myForm.reset();
   }
 
-  getControlValue(control: string) {
-    return this.myForm.controls[control].value || null;
-  }
-
-  getFilterObj() {
-    return {
-      login: this.getControlValue('userName'),
-      phone: this.getControlValue('phone'),
-      mail: this.getControlValue('mail'),
-      createAt: this.getControlValue('dateCreate'),
-      updateAt: this.getControlValue('dateUpdate'),
-      status: this.getControlValue('status'),
-      role: this.getControlValue('role'),
-    };
-  }
-
   applyFilter() {
-    if (this.myForm.valid) {
+    if (this.myForm.valid && !this.myForm.pristine) {
       this.sendFilter = true;
       console.log(this.myForm.value);
+      this.filteredData = this.myForm.value;
+      const newTableData = this.filterData();
+      this.onChanged.emit(newTableData);
     }
   }
 
   cancelFilter() {
-    //if filter send
-    if (this.sendFilter) {
-      this.clearAll();
-      this.sendFilter = false;
-      console.log(this.myForm.value);
+    this.sendFilter = false;
+    this.onCancel.emit(true);
+  }
+
+  filterData() {
+    if (!this.filteredData) return;
+
+    let data = [...this.data];
+    const filterOptions = Object.entries(this.filteredData);
+    console.log(filterOptions);
+    for (let index = 0; index < filterOptions.length; index += 1) {
+      const [key, value] = filterOptions[index];
+      if (!value) continue;
+      if (key === 'create_at' || key === 'update_at') {
+        data = data.filter(
+          (user) =>
+            this.filterDate(user[key as keyof ICompositionUser]) ===
+            this.filterDate(value)
+        );
+      } else if (key === 'phone') {
+        data = data.filter(
+          (user) =>
+            user[key as keyof ICompositionUser] === this.filterPhone(value)
+        );
+      } else if (key === 'is_admin') {
+        data = data.filter(
+          (user) =>
+            user[key as keyof ICompositionUser] === this.filterRole(value)
+        );
+      } else {
+        data = data.filter(
+          (user) => user[key as keyof ICompositionUser] === value
+        );
+      }
     }
+
+    console.log(data);
+    return data;
+  }
+
+  filterPhone(phone: string) {
+    const allPhonesPart = phone.match(/\d/gm);
+    console.log(allPhonesPart);
+    return Number(allPhonesPart?.join(''));
+  }
+
+  filterRole(role: string) {
+    return role === 'admin' ? true : false;
+  }
+
+  filterDate(date: string) {
+    const timeToStamp = new Date(date).toLocaleDateString('ru-RU', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+    });
+    console.log(timeToStamp);
+    return timeToStamp;
   }
 }

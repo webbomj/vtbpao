@@ -42,6 +42,17 @@
   </div>
 
   <div class="setting__filter">
-    <app-filter [isOpen]="filter"></app-filter>
+    <app-filter
+      [isOpen]="filter"
+      [data]="dataTable"
+      (onChanged)="setNewData($event)"
+      (onCancel)="setOldData($event)"
+    ></app-filter>
+  </div>
+
+  <div class="setting__tables">
+    <div class="setting__table--first">
+      <app-table [dataSource]="dataTable"></app-table>
+    </div>
   </div>
 </div>

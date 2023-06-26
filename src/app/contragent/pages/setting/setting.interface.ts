@@ -26,4 +26,14 @@ export interface IData {
   status: string;
 }
 
+export interface IFilteredUser {
+  create_at: string | null;
+  update_at: string | null;
+  email: string | null;
+  phone: string | null;
+  role: string | null;
+  status: string | null;
+  name: string | null;
+}
+
 export type ICompositionUser = IUsers | IData;

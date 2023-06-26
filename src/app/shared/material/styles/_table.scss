@@ -1,0 +1,7 @@
+.mdc-data-table__cell,
+.mdc-data-table__header-cell {
+  text-align: center !important;
+  @media (max-width: 1090px) {
+    padding: 0 2px !important;
+  }
+}

@@ -4,34 +4,30 @@
     <div class="filter__input userName">
       <mat-label
         class="input__label"
-        [class]="isValidControl('userName') ? 'input__label--invalid' : ''"
+        [class]="isValidControl('name') ? 'input__label--invalid' : ''"
         >Логин</mat-label
       >
       <mat-form-field class="input__field">
         <input
           matInput
           type="text"
-          formControlName="userName"
+          formControlName="name"
           class="input__field-input"
-          [class]="
-            isValidControl('userName') ? 'input__field-input--invalid' : ''
-          "
+          [class]="isValidControl('name') ? 'input__field-input--invalid' : ''"
         />
         <button
           matSuffix
           mat-icon-button
           aria-label="Clear"
-          (click)="clear('userName')"
+          (click)="clear('name')"
           class="input__field-button"
-          [class]="
-            isValidControl('userName') ? 'input__field-button--invalid' : ''
-          "
+          [class]="isValidControl('name') ? 'input__field-button--invalid' : ''"
         >
           <mat-icon>cancel</mat-icon>
         </button>
       </mat-form-field>
       <mat-error
-        *ngIf="isValidControl('userName') && myForm.controls['mail'].touched"
+        *ngIf="isValidControl('name') && myForm.controls['name'].touched"
       >
         Please enter a valid login
       </mat-error>
@@ -73,7 +69,7 @@
       <mat-label
         class="input__label"
         [class]="
-        myForm.controls['dateCreate'].errors?.['date'] && myForm.controls['dateCreate'].dirty
+        myForm.controls['create_at']?.errors?.['date'] && myForm.controls['create_at'].dirty
             ? 'input__label--invalid'
             : ''
         "
@@ -83,17 +79,17 @@
         <input
           matInput
           [matDatepicker]="picker"
-          formControlName="dateCreate"
+          formControlName="create_at"
           [class]="
-          myForm.controls['dateCreate'].errors?.['date'] ? 'input__field-input--invalid' : ''
+          myForm.controls['create_at']?.errors?.['date'] ? 'input__field-input--invalid' : ''
           "
         />
         <mat-datepicker-toggle matIconSuffix [for]="picker">
           <mat-icon
             matDatepickerToggleIcon
             [class]="
-            myForm.controls['dateCreate'].errors?.['date'] &&
-              myForm.controls['dateCreate'].dirty
+            myForm.controls['create_at']?.errors?.['date'] &&
+              myForm.controls['create_at'].dirty
                 ? 'input__field-button--invalid'
                 : ''
             "
@@ -104,7 +100,7 @@
       </mat-form-field>
       <mat-error
         *ngIf="
-        myForm.controls['dateCreate'].errors?.['date'] && myForm.controls['dateCreate'].touched
+        myForm.controls['dateCreate']?.errors?.['date'] && myForm.controls['dateCreate'].touched
         "
       >
         Please enter a valid date
@@ -115,46 +111,48 @@
       <mat-form-field class="input__field select">
         <select matNativeControl formControlName="status">
           <option value="" selected></option>
-          <option value="active">Активный</option>
-          <option value="blocked">Заблокированный</option>
+          <option value="ACTIVE">Активный</option>
+          <option value="BLOCK">Заблокированный</option>
         </select>
       </mat-form-field>
     </div>
     <div class="filter__input mail">
       <mat-label
         class="input__label"
-        [class]="isValidControl('mail') ? 'input__label--invalid' : ''"
+        [class]="isValidControl('email') ? 'input__label--invalid' : ''"
         >E-mail</mat-label
       >
       <mat-form-field class="input__field">
         <input
           matInput
           type="text"
-          formControlName="mail"
+          formControlName="email"
           class="input__field-input"
-          [class]="isValidControl('mail') ? 'input__field-input--invalid' : ''"
+          [class]="isValidControl('email') ? 'input__field-input--invalid' : ''"
         />
         <button
           matSuffix
           mat-icon-button
           aria-label="Clear"
-          (click)="clear('mail')"
+          (click)="clear('email')"
           class="input__field-button"
-          [class]="isValidControl('mail') ? 'input__field-button--invalid' : ''"
+          [class]="
+            isValidControl('email') ? 'input__field-button--invalid' : ''
+          "
         >
           <mat-icon>cancel</mat-icon>
         </button>
       </mat-form-field>
       <mat-error
-        *ngIf="isValidControl('mail') && myForm.controls['mail'].touched"
+        *ngIf="isValidControl('email') && myForm.controls['email'].touched"
       >
-        Please enter a valid mail
+        Please enter a valid email
       </mat-error>
     </div>
     <div class="filter__input role">
       <mat-label class="input__label">Роль</mat-label>
       <mat-form-field class="input__field datepicker">
-        <select matNativeControl formControlName="role">
+        <select matNativeControl formControlName="is_admin">
           <option value="" selected></option>
           <option value="user">Пользователь</option>
           <option value="admin">Администратор</option>
@@ -165,7 +163,7 @@
       <mat-label
         class="input__label"
         [class]="
-        myForm.controls['dateUpdate'].errors?.['date'] && myForm.controls['dateUpdate'].dirty
+        myForm.controls['update_at']?.errors?.['date'] && myForm.controls['update_at'].dirty
             ? 'input__label--invalid'
             : ''
         "
@@ -175,17 +173,17 @@
         <input
           matInput
           [matDatepicker]="picker2"
-          formControlName="dateUpdate"
+          formControlName="update_at"
           [class]="
-          myForm.controls['dateUpdate'].errors?.['date'] ? 'input__field-input--invalid' : ''
+          myForm.controls['update_at']?.errors?.['date'] ? 'input__field-input--invalid' : ''
           "
         />
         <mat-datepicker-toggle matIconSuffix [for]="picker2">
           <mat-icon
             matDatepickerToggleIcon
             [class]="
-            myForm.controls['dateUpdate'].errors?.['date'] &&
-              myForm.controls['dateUpdate'].dirty
+            myForm.controls['update_at']?.errors?.['date'] &&
+              myForm.controls['update_at'].dirty
                 ? 'input__field-button--invalid'
                 : ''
             "
@@ -196,7 +194,7 @@
       </mat-form-field>
       <mat-error
         *ngIf="
-          myForm.controls['dateUpdate'].errors?.['date'] && myForm.controls['dateUpdate'].touched
+          myForm.controls['update_at'].errors?.['date'] && myForm.controls['update_at'].touched
         "
       >
         Please enter a valid date
