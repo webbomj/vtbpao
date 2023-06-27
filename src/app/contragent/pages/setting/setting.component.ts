@@ -88,10 +88,8 @@ export class SettingComponent extends BaseComponent implements OnInit {
   }
 
   banUser(events: string[]) {
-    console.log(events, 'da');
     events.forEach((event) => {
       this.dataTable.forEach((el) => {
-        console.log(el, ' + ', event);
         if (el.name === event) {
           if (el.status !== 'BLOCK') {
             this.storage.setData(events, 'ban');
@@ -103,10 +101,8 @@ export class SettingComponent extends BaseComponent implements OnInit {
   }
 
   unbanUser(events: string[]) {
-    console.log(events, 'da');
     events.forEach((event) => {
       this.dataTable.forEach((el) => {
-        console.log(el, ' + ', event);
         if (el.name === event) {
           if (el.status !== 'ACTIVE') {
             this.storage.setData(events, 'unban');

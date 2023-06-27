@@ -87,7 +87,6 @@ export class TableComponent implements OnInit {
   }
 
   checkOneLogin(event: any) {
-    console.log(event);
     this.countCheckbox();
   }
 

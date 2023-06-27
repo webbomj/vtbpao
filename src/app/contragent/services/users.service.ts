@@ -9,8 +9,7 @@ export class UsersService {
   constructor(private http: HttpClient) {}
 
   getData() {
-    return this.http.get<IUsersData>(
-      'http://cars.cprogroup.ru/api/rubetek/angular-testcase-list/'
-    );
+    const url = `http://cars.cprogroup.ru/api/rubetek/angular-testcase-list/`;
+    return this.http.get<IUsersData>(url);
   }
 }

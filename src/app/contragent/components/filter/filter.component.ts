@@ -56,7 +56,6 @@ export class FilterComponent {
   applyFilter() {
     if (this.myForm.valid && !this.myForm.pristine) {
       this.sendFilter = true;
-      console.log(this.myForm.value);
       this.filteredData = this.myForm.value;
       const newTableData = this.filterData();
       this.onChanged.emit(newTableData);
@@ -73,7 +72,6 @@ export class FilterComponent {
 
     let data = [...this.data];
     const filterOptions = Object.entries(this.filteredData);
-    console.log(filterOptions);
     for (let index = 0; index < filterOptions.length; index += 1) {
       const [key, value] = filterOptions[index];
       if (!value) continue;
@@ -97,14 +95,11 @@ export class FilterComponent {
         );
       }
     }
-
-    console.log(data);
     return data;
   }
 
   filterPhone(phone: string) {
     const allPhonesPart = phone.match(/\d/gm);
-    console.log(allPhonesPart);
     return Number(allPhonesPart?.join(''));
   }
 
@@ -118,7 +113,6 @@ export class FilterComponent {
       month: '2-digit',
       year: 'numeric',
     });
-    console.log(timeToStamp);
     return timeToStamp;
   }
 }
